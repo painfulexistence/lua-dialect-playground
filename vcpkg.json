@@ -1,5 +1,5 @@
 {
-	"name": "lua-dialects-playground",
+	"name": "lua-dialect-playground",
 	"version": "0.1.0",
   "license": "MIT",
 	"dependencies": [

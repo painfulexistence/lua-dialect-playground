@@ -1,4 +1,4 @@
-# Lua Dialects Playground 🛝
+# Lua Dialect Playground 🛝
 
 ## Building
 On macOS, run the following script first to install dependencies and set up env variables:

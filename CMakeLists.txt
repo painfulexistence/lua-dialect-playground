@@ -10,7 +10,7 @@ else()
 endif()
 
 project(
-    lua-tests
+    lua-dialect-playground
     VERSION 0.0.1
     LANGUAGES CXX
 )
