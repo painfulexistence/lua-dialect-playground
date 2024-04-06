@@ -8,6 +8,7 @@ auto main(int argc, char* args[]) -> int {
 
     auto const L = luaL_newstate();
     luaL_openlibs(L);
+
     size_t bytecodeSize = 0;
     char* bytecode = luau_compile(source, strlen(source), nullptr, &bytecodeSize);
     int result = luau_load(L, "a", bytecode, bytecodeSize, 0);
@@ -17,8 +18,8 @@ auto main(int argc, char* args[]) -> int {
         return 1;
 
 
-    fmt::print("Hello from C++!");
-
     lua_close(L);
+
+    fmt::print("Hello from C++!");
     return 0;
 }

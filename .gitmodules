@@ -4,3 +4,6 @@
 [submodule "src/external/luau"]
 	path = src/external/luau
 	url = https://github.com/luau-lang/luau.git
+[submodule "src/external/terra"]
+	path = src/external/terra
+	url = https://github.com/terralang/terra.git
