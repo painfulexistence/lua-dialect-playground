@@ -1,6 +1,7 @@
 {
-	"name": "lua-tests",
+	"name": "lua-dialects-playground",
 	"version": "0.1.0",
+  "license": "MIT",
 	"dependencies": [
 		"fmt",
 		"lua",
