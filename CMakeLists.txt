@@ -1,13 +1,24 @@
 cmake_minimum_required(VERSION 3.20.0)
 
-option(GLOBAL_VCPKG "Use global Vcpkg " OFF)
-
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+option(GLOBAL_VCPKG "Use global Vcpkg" OFF)
 if (GLOBAL_VCPKG)
     set(CMAKE_TOOLCHAIN_FILE $ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
 else()
     set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake)
 endif()
+
+option(CCACHE "Use ccache to speed up the compilation" ON)
+if(CCACHE)
+    find_program(CCACHE_FOUND ccache)
+    if(CCACHE_FOUND)
+        set(PATH_TO_CCACHE ccache)
+    else()
+        message(WARNING "Ccache path not found, disabling ccache")
+    endif(CCACHE_FOUND)
+    set(CXX_COMPILER_LAUNCHER PATH_TO_CCACHE)
+endif(CCACHE)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 project(
     lua-dialect-playground
@@ -39,6 +50,5 @@ add_executable(luajit-test src/luajit/main.cpp)
 target_link_libraries(luajit-test PRIVATE fmt::fmt PkgConfig::LuaJIT)
 
 add_executable(terra-test src/terra/main.cpp)
-message(WARNING ${PROJECT_BINARY_DIR})
 target_include_directories(terra-test PRIVATE ${PROJECT_BINARY_DIR}/src/external/terra/include/terra)
 target_link_libraries(terra-test PRIVATE fmt::fmt TerraLibrary)
